@@ -4,15 +4,15 @@ import java.util.List;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
+import subway.domain.DistanceRepository;
 import subway.domain.StationRepository;
-import subway.domain.TimeRepository;
 
-public class ShortestTimePathSearch implements PathSearch {
+public class ShortestDistancePathSearch implements PathSearch {
     @Override
     public List<String> search(String departure, String arrival) {
         WeightedMultigraph<String, DefaultWeightedEdge> graph = new WeightedMultigraph<>(DefaultWeightedEdge.class);
         setStationVertex(graph);
-        setTimeWeightEdge(graph);
+        setDistanceWeightEdge(graph);
         return findOptimizePath(graph, departure, arrival);
     }
 
@@ -26,10 +26,10 @@ public class ShortestTimePathSearch implements PathSearch {
         StationRepository.stations().forEach(station -> graph.addVertex(station.getName()));
     }
 
-    private void setTimeWeightEdge(WeightedMultigraph<String, DefaultWeightedEdge> graph) {
-        TimeRepository.times().forEach(
-                time -> graph.setEdgeWeight(graph.addEdge(time.getDeparture(), time.getArrival()),
-                        time.getMinute())
+    private void setDistanceWeightEdge(WeightedMultigraph<String, DefaultWeightedEdge> graph) {
+        DistanceRepository.distances().forEach(
+                distance -> graph.setEdgeWeight(graph.addEdge(distance.getDeparture(), distance.getArrival()),
+                        distance.getKilometer())
         );
     }
 }

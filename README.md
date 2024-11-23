@@ -56,12 +56,12 @@
     - 소요 거리 저장 (Distance) : 출발역 이름, 도착역 이름, 거리
     - 소요 시간 저장 (Time) : 출발역 이름, 도착역 이름, 시간
 
-- [ ] 최단 거리 경로 찾기
+- [X] 최단 거리 경로 찾기
     - JGrpaht 라이브러리를 이용한다
-        - 출발역과 도착역, 그 사이의 역들을 조회하여 addVertex
+        - 모든 역들을 조회하여 addVertex
         - 이어진 역들끼리 addEdge
         - 역들 간 거리를 가중치로 설정 setEdgeWeight
         - DijkstraShortestPath의 getPath와 getVetTexList를 이용하여 최단 경로 조회
 
-- [ ] 최단 시간 경로 찾기
+- [X] 최단 시간 경로 찾기
     - 위 방법에서 가중치를 시간으로 setEdgeWeight
