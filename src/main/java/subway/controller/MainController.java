@@ -18,12 +18,20 @@ public class MainController {
     }
 
     public void start() {
+        // 초기화
         SubwayInitializer.INITIALIZER.initialize();
         Validator validator = new Validator();
 
-        outputView.showMainDisplay();
-        String mainAnswer = inputView.inputFeature();
-        MainAnswers.checkAnswer(mainAnswer);
+        // 메인 화면
+        String mainAnswer = null;
+        while (mainAnswer == null) {
+            try {
+                outputView.showMainDisplay();
+                mainAnswer = MainAnswers.checkAnswer(inputView.inputFeature());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
         outputView.showPathStandardSelectDisplay();
         String pathStandardAnswer = inputView.inputFeature();

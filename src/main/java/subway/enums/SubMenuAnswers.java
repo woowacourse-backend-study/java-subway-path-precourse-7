@@ -14,10 +14,11 @@ public enum SubMenuAnswers {
         this.message = message;
     }
 
-    public static void checkAnswer(String answer) {
+    public static String checkAnswer(String answer) {
         if (!answer.equals(SHORTEST_DISTANCE_OPTION.message) && !answer.equals(SHORTEST_TIME_OPTION.message)
                 && !answer.equals(GO_BACK_OPTION.message)) {
             throw new IllegalArgumentException(INVALID_ANSWER.valueOf());
         }
+        return answer;
     }
 }
