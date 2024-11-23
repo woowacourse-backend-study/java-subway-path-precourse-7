@@ -1,5 +1,7 @@
 package subway.domain;
 
+import static subway.enums.ExceptionMessage.EQUAL_DEPARTURE_AND_ARRIVAL;
+
 import java.util.Objects;
 
 public class Station {
@@ -11,6 +13,12 @@ public class Station {
 
     public String getName() {
         return name;
+    }
+
+    public void checkSameName(String arrival) {
+        if (this.name.equals(arrival)) {
+            throw new IllegalArgumentException(EQUAL_DEPARTURE_AND_ARRIVAL.valueOf());
+        }
     }
 
     @Override

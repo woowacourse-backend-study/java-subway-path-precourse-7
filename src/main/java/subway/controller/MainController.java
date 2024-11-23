@@ -37,12 +37,17 @@ public class MainController implements Controller {
     private String answerInMain() {
         String mainAnswer = null;
         while (mainAnswer == null) {
-            try {
-                outputView.showMainDisplay();
-                mainAnswer = MainAnswers.checkAnswer(inputView.inputFeature());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+            mainAnswer = getMainAnswer(mainAnswer);
+        }
+        return mainAnswer;
+    }
+
+    private String getMainAnswer(String mainAnswer) {
+        try {
+            outputView.showMainDisplay();
+            mainAnswer = MainAnswers.checkAnswer(inputView.inputFeature());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
         }
         return mainAnswer;
     }

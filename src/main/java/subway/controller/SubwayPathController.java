@@ -1,6 +1,7 @@
 package subway.controller;
 
 import java.util.List;
+import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.search.ShortestDistancePathSearch;
 import subway.domain.search.ShortestTimePathSearch;
@@ -25,8 +26,11 @@ public class SubwayPathController implements Controller {
         String departure = answerDeparture();
         String arrival = answerArrival();
 
+        checkEqualsName(departure, arrival);
+
         if (subMenuAnswer.equals(SHORTEST_DISTANCE_OPTION)) {
             handleShortestDistanceCase(departure, arrival);
+            return;
         }
         handleShortestTimeCase(departure, arrival);
     }
@@ -51,6 +55,16 @@ public class SubwayPathController implements Controller {
             subMenuController.startSubMenu();
         }
         return arrival;
+    }
+
+    private void checkEqualsName(String departure, String arrival) {
+        Station station = new Station(StationRepository.searchStationByName(departure));
+        try {
+            station.checkSameName(arrival);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            subMenuController.startSubMenu();
+        }
     }
 
     private void handleShortestDistanceCase(String departure, String arrival) {

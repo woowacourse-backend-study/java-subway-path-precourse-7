@@ -17,7 +17,6 @@ public class SubMenuController implements Controller {
     }
 
     public void startSubMenu() {
-
         while (true) {
             String subMenuAnswer = answerInSubMenu();
             if (subMenuAnswer.equals(GO_BACK_OPTION)) {
