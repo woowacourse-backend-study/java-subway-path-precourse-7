@@ -18,4 +18,8 @@ public class Distance {
     public String getArrival() {
         return arrival;
     }
+
+    public int getKilometer() {
+        return kilometer;
+    }
 }
