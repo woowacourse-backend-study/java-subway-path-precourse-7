@@ -52,7 +52,6 @@ public class CalculateController implements Controllable{
             Station station = StationRepository.findByName(route.get(i));
             ConnectionStations connectionStations = station.getConnectionStations();
             ConnectionStationInfo connectionStationInfo = connectionStations.findByName(route.get(i + 1));
-            System.out.println(connectionStationInfo);
             totalDistance += connectionStationInfo.getDistance();
             totalTime += connectionStationInfo.getTime();
         }

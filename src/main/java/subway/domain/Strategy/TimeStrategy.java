@@ -15,7 +15,6 @@ public class TimeStrategy{
                 = new WeightedMultigraph(DefaultWeightedEdge.class);
 
         List<Station> stations = StationRepository.stations();
-        System.out.println(stations);
 
         stations.forEach(station -> graph.addVertex(station.getName()));
 
