@@ -1,4 +1,6 @@
-package subway.domain;
+package subway.repository;
+
+import subway.domain.vo.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,5 +24,16 @@ public class StationRepository {
 
     public static void deleteAll() {
         stations.clear();
+    }
+
+    public static void addAll(List<Station> stations) {
+        StationRepository.stations.addAll(stations);
+    }
+
+    public static Station findByName(String name) {
+        return stations().stream()
+                .filter(s -> s.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 }
