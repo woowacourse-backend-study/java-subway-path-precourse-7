@@ -9,6 +9,8 @@ public class OutputView {
     private final String SHORTEST_DISTANCE = "1. 최단 거리";
     private final String MINIMUM_TIME = "2. 최소 시간";
     private final String GO_BACK = "B. 돌아가기";
+    private final String DEPARTURE_STATION_INPUT_PROMPT = "## 출발역을 입력하세요.";
+    private final String ARRIVAL_STATION_INPUT_PROMPT = "## 도착역을 입력하세요.";
 
     public void printMainPrompt() {
         System.out.println(MAIN_PROMPT);
@@ -26,5 +28,13 @@ public class OutputView {
         System.out.println(SHORTEST_DISTANCE);
         System.out.println(MINIMUM_TIME);
         System.out.println(GO_BACK);
+    }
+
+    public void printDepartureStationInputPrompt() {
+        System.out.println(DEPARTURE_STATION_INPUT_PROMPT);
+    }
+
+    public void printArrivalStationInputPrompt() {
+        System.out.println(ARRIVAL_STATION_INPUT_PROMPT);
     }
 }
