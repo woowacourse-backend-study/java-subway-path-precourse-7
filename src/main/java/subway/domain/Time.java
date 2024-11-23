@@ -18,4 +18,8 @@ public class Time {
     public String getArrival() {
         return arrival;
     }
+
+    public int getMinute() {
+        return minute;
+    }
 }
