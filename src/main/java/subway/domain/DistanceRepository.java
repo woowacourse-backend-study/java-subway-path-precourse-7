@@ -25,4 +25,11 @@ public class DistanceRepository {
     public static void deleteAll() {
         distances.clear();
     }
+
+    public static int searchDistanceByName(String departure, String arrival) {
+        return distances().stream()
+                .filter(time -> Objects.equals(time.getDeparture(), departure) && Objects.equals(time.getArrival(),
+                        arrival))
+                .mapToInt(Distance::getKilometer).sum();
+    }
 }

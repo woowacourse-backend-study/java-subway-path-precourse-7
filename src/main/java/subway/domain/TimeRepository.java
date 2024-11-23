@@ -18,11 +18,18 @@ public class TimeRepository {
 
     public static boolean deleteTimeByName(String departure, String arrival) {
         return times.removeIf(
-                distance -> Objects.equals(distance.getDeparture(), departure) &&
-                        Objects.equals(distance.getArrival(), arrival));
+                time -> Objects.equals(time.getDeparture(), departure) &&
+                        Objects.equals(time.getArrival(), arrival));
     }
 
     public static void deleteAll() {
         times.clear();
+    }
+
+    public static int searchTimeByName(String departure, String arrival) {
+        return times().stream()
+                .filter(time -> Objects.equals(time.getDeparture(), departure) && Objects.equals(time.getArrival(),
+                        arrival))
+                .mapToInt(Time::getMinute).sum();
     }
 }

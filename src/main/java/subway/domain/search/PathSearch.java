@@ -14,7 +14,7 @@ public abstract class PathSearch {
                                             String arrival) {
         DijkstraShortestPath<String, DefaultWeightedEdge> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
         List<String> shortestPath = dijkstraShortestPath.getPath(departure, arrival).getVertexList();
-        
+
         return checkConnectedGraph(shortestPath);
     }
 

@@ -26,9 +26,10 @@ public class StationRepository {
         stations.clear();
     }
 
-    public static void searchStationByName(String name) {
+    public static String searchStationByName(String name) {
         if (!stations.contains(new Station(name))) {
             throw new IllegalArgumentException(NOT_EXISTS_STATION.valueOf());
         }
+        return name;
     }
 }
