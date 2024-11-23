@@ -8,6 +8,10 @@ public class OutputView {
         System.out.println("Q. 종료");
     }
 
+    public void printErrorMessage(String message) {
+        System.out.println(message);
+    }
+
     private void println() {
         System.out.println();
     }

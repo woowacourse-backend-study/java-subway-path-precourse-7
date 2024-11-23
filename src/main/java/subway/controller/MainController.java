@@ -1,7 +1,11 @@
 package subway.controller;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.function.Supplier;
 import subway.domain.Line;
 import subway.domain.LineRepository;
+import subway.domain.MainOption;
 import subway.domain.Station;
 import subway.domain.StationInfo;
 import subway.domain.StationRepository;
@@ -12,15 +16,29 @@ public class MainController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final Map<MainOption,Controllable> controllers;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.controllers = new EnumMap<>(MainOption.class);
+        initializeControllers();
     }
 
     public void process() {
-        outputView.printMainOption();
+
+        MainOption option;
+        do {
+            outputView.printMainOption();
+            option = doLoop(() -> MainOption.from(inputView.enterMainOption()));
+            controllers.get(option).process();
+        } while (option.isPlayable());
         initStationInfo();
+    }
+
+    private void initializeControllers() {
+        controllers.put(MainOption.FIND_ROUTE,new RouteController(inputView,outputView));
+        controllers.put(MainOption.EXIT,new ExitController());
     }
 
     public void initStationInfo() {
@@ -38,5 +56,15 @@ public class MainController {
         LineRepository.addLine(lineTwo);
         LineRepository.addLine(lineThree);
         LineRepository.addLine(lineBundang);
+    }
+
+    private <T> T doLoop(Supplier<T> function) {
+        while (true) {
+            try {
+                return function.get();
+            } catch (IllegalArgumentException e) {
+                outputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }
