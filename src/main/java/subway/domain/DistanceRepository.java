@@ -8,7 +8,7 @@ import java.util.Objects;
 public class DistanceRepository {
     private static final List<Distance> distances = new ArrayList<>();
 
-    public static List<Distance> lines() {
+    public static List<Distance> distances() {
         return Collections.unmodifiableList(distances);
     }
 
