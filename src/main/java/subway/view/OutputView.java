@@ -1,5 +1,7 @@
 package subway.view;
 
+import java.util.List;
+
 public class OutputView {
     private final String MAIN_PROMPT = "## 메인 화면";
     private final String SEARCH_ROUTE = "1. 경로 조회";
@@ -36,5 +38,18 @@ public class OutputView {
 
     public void printArrivalStationInputPrompt() {
         System.out.println(ARRIVAL_STATION_INPUT_PROMPT);
+    }
+
+    public void printResultPrompt(double shortestDistance, double totalTime) {
+        int parsedDistance = (int) shortestDistance;
+        System.out.println("## 조회 결과");
+        System.out.println("[INFO] ---");
+        System.out.printf("[INFO] 총 거리: %dkm%n", parsedDistance);
+        System.out.printf("[INFO] 총 소요 시간: %.0f분%n", totalTime);
+        System.out.println("[INFO] ---");
+    }
+
+    public void printRouteResultPrompt(List<String> shortestPath) {
+        shortestPath.forEach(station -> System.out.println("[INFO] " + station));
     }
 }
