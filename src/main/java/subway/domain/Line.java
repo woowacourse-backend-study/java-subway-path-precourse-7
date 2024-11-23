@@ -1,10 +1,20 @@
 package subway.domain;
 
-public class Line {
-    private String name;
+import java.util.Arrays;
+import java.util.List;
 
-    public Line(String name) {
+public class Line {
+
+    private final String name;
+    private final List<Station> stations;
+
+    private Line(String name, List<Station> stations) {
         this.name = name;
+        this.stations = stations;
+    }
+
+    public static Line valueOf(String input, Station... stations) {
+        return new Line(input, Arrays.stream(stations).toList());
     }
 
     public String getName() {
