@@ -28,6 +28,6 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> station.getName().equals(name))
                 .findAny()
-                .orElse(null);
+                .orElseThrow(() -> new IllegalArgumentException("[Error] 존재하지 않는 역 이름입니다."));
     }
 }

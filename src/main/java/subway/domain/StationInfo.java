@@ -4,13 +4,13 @@ public enum StationInfo {
     GYODAE(StationName.valueOf("교대역"),
             ConnectionStations.newInstance(
                     ConnectionStationInfo.from("강남역", "2", "3"),
-                    ConnectionStationInfo.from("남부터미널역", "6", "5")
+                    ConnectionStationInfo.from("남부터미널역", "3", "2")
             )),
     GANGNAM(StationName.valueOf("강남역"),
             ConnectionStations.newInstance(
                     ConnectionStationInfo.from("교대역", "2", "3"),
                     ConnectionStationInfo.from("역삼역", "2", "3"),
-                    ConnectionStationInfo.from("양재역", "10", "3")
+                    ConnectionStationInfo.from("양재역", "2", "8")
             )),
     YEOKSAM(StationName.valueOf("역삼역"),
             ConnectionStations.newInstance(

@@ -9,6 +9,18 @@ public class InputView {
         return readLine().strip();
     }
 
+    public String enterStartStation() {
+        println();
+        System.out.println("## 출발역을 입력하세요.");
+        return readLine().strip();
+    }
+
+    public String enterEndStation() {
+        println();
+        System.out.println("## 도착역을 입력하세요.");
+        return readLine().strip();
+    }
+
     private void println() {
         System.out.println();
     }

@@ -1,8 +1,5 @@
 package subway.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ConnectionStationInfo {
 
     private final StationName stationName;
@@ -23,5 +20,24 @@ public class ConnectionStationInfo {
         );
     }
 
+    public String getStationName() {
+        return stationName.getStationName();
+    }
 
+    public int getDistance() {
+        return distance.getDistance();
+    }
+
+    public int getTime() {
+        return time.getTime();
+    }
+
+    @Override
+    public String toString() {
+        return "ConnectionStationInfo{" +
+                "stationName=" + stationName +
+                ", distance=" + distance +
+                ", time=" + time +
+                '}';
+    }
 }

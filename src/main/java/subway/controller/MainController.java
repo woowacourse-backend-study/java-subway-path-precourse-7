@@ -1,5 +1,6 @@
 package subway.controller;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -26,6 +27,7 @@ public class MainController {
     }
 
     public void process() {
+        initStationInfo();
 
         MainOption option;
         do {
@@ -33,16 +35,16 @@ public class MainController {
             option = doLoop(() -> MainOption.from(inputView.enterSelectOption()));
             controllers.get(option).process();
         } while (option.isPlayable());
-        initStationInfo();
     }
 
     private void initializeControllers() {
-        controllers.put(MainOption.FIND_ROUTE,new RouteController(inputView,outputView));
+        controllers.put(MainOption.FIND_ROUTE,new SubController(inputView,outputView));
         controllers.put(MainOption.EXIT,new ExitController());
     }
 
     public void initStationInfo() {
         StationInfo[] stationInfos = StationInfo.values();
+        System.out.println(Arrays.toString(stationInfos));
         for (StationInfo stationInfo : stationInfos) {
             StationRepository.addStation(Station.from(stationInfo.getName(), stationInfo.getConnectionStations()));
         }

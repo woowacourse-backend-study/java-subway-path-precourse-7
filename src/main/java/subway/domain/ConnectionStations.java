@@ -1,6 +1,5 @@
 package subway.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,9 +16,17 @@ public class ConnectionStations {
         return new ConnectionStations(connections);
     }
 
-    public void addConnections(String name, String distance, String time) {
-        ConnectionStationInfo connectionInfo = ConnectionStationInfo.from(name, distance, time);
-        connectionStationInfos.add(connectionInfo);
+    public List<ConnectionStationInfo> getConnectionStationInfos() {
+        return connectionStationInfos.stream().toList();
     }
 
+    public ConnectionStationInfo findByName(String name) {
+        return connectionStationInfos.stream()
+                .filter(connectionStationInfo ->
+                    connectionStationInfo.getStationName().equals(name)
+                )
+                .findAny()
+                .orElse(null);
+
+    }
 }

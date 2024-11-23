@@ -31,4 +31,9 @@ public class StationName {
     public int hashCode() {
         return Objects.hashCode(stationName);
     }
+
+    @Override
+    public String toString() {
+        return stationName;
+    }
 }

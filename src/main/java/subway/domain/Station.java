@@ -1,5 +1,8 @@
 package subway.domain;
 
+import java.util.List;
+import java.util.Objects;
+
 public class Station {
     private final StationName name;
     private final ConnectionStations connectionStations;
@@ -17,6 +20,27 @@ public class Station {
         return name.getStationName();
     }
 
+    public ConnectionStations getConnectionStations() {
+        return connectionStations;
+    }
 
-    // 추가 기능 구현
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Station station = (Station) o;
+        return Objects.equals(name, station.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
+
+    @Override
+    public String toString() {
+        return name.toString();
+    }
 }
