@@ -22,4 +22,20 @@ public class Section {
                 ", time=" + time +
                 '}';
     }
+
+    public Station getLeft() {
+        return left;
+    }
+
+    public Station getRight() {
+        return right;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public int getTime() {
+        return time;
+    }
 }
