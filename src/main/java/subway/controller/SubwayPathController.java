@@ -1,18 +1,22 @@
 package subway.controller;
 
 import java.util.List;
-import subway.domain.DistanceRepository;
 import subway.domain.StationRepository;
-import subway.domain.TimeRepository;
 import subway.domain.search.ShortestDistancePathSearch;
 import subway.domain.search.ShortestTimePathSearch;
+import subway.domain.search.TotalDistanceCalculator;
+import subway.domain.search.TotalTimeCalculator;
 
 public class SubwayPathController implements Controller {
 
     private final SubMenuController subMenuController;
+    private final TotalDistanceCalculator totalDistanceCalculator;
+    private final TotalTimeCalculator totalTimeCalculator;
 
     public SubwayPathController(SubMenuController subMenuController) {
         this.subMenuController = subMenuController;
+        this.totalDistanceCalculator = new TotalDistanceCalculator();
+        this.totalTimeCalculator = new TotalTimeCalculator();
     }
 
     public void startFindPath(String subMenuAnswer) {
@@ -49,29 +53,13 @@ public class SubwayPathController implements Controller {
 
     private void handleShortestDistanceCase(String departure, String arrival) {
         List<String> shortestPath = new ShortestDistancePathSearch().search(departure, arrival);
-        outputView.showShortestPathResult(calculateTotalDistance(shortestPath), calculateTotalTime(shortestPath),
-                shortestPath);
+        outputView.showShortestPathResult(totalDistanceCalculator.calculateTotalDistance(shortestPath),
+                totalTimeCalculator.calculateTotalTime(shortestPath), shortestPath);
     }
 
     private void handleShortestTimeCase(String departure, String arrival) {
         List<String> shortestPath = new ShortestTimePathSearch().search(departure, arrival);
-        outputView.showShortestPathResult(calculateTotalDistance(shortestPath), calculateTotalTime(shortestPath),
-                shortestPath);
-    }
-
-    private int calculateTotalTime(List<String> shortestPath) {
-        int totalTime = 0;
-        for (int i = 0; i < shortestPath.size() - 1; i++) {
-            totalTime += TimeRepository.searchTimeByName(shortestPath.get(i), shortestPath.get(i + 1));
-        }
-        return totalTime;
-    }
-
-    private int calculateTotalDistance(List<String> shortestPath) {
-        int totalDistance = 0;
-        for (int i = 0; i < shortestPath.size() - 1; i++) {
-            totalDistance += DistanceRepository.searchDistanceByName(shortestPath.get(i), shortestPath.get(i + 1));
-        }
-        return totalDistance;
+        outputView.showShortestPathResult(totalDistanceCalculator.calculateTotalDistance(shortestPath),
+                totalTimeCalculator.calculateTotalTime(shortestPath), shortestPath);
     }
 }
