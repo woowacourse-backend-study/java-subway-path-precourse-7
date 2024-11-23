@@ -1,6 +1,7 @@
 package subway;
 
-import subway.dto.UserFunctionInput;
+import subway.dto.CriteriaFunctionInput;
+import subway.dto.MainFunctionInput;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -13,7 +14,10 @@ public class Application {
         outputView.printUserFunctionInputPrompt();
 
         InputView inputView = new InputView();
-        UserFunctionInput userFunctionInput = inputView.userFunctionInput();
+        MainFunctionInput userFunctionInput = inputView.mainFunctionInput();
+        System.out.println();
 
+        outputView.printFunctionCriteriaInputPrompt();
+        CriteriaFunctionInput criteriaFunctionInput = inputView.criteriaFunctionInput();
     }
 }

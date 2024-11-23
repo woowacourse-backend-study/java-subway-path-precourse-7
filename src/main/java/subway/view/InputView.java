@@ -1,12 +1,18 @@
 package subway.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import subway.dto.UserFunctionInput;
+import subway.dto.CriteriaFunctionInput;
+import subway.dto.MainFunctionInput;
 
 public class InputView {
 
-    public UserFunctionInput userFunctionInput() {
+    public MainFunctionInput mainFunctionInput() {
         String input = Console.readLine();
-        return UserFunctionInput.from(input);
+        return MainFunctionInput.from(input);
+    }
+
+    public CriteriaFunctionInput criteriaFunctionInput() {
+        String input = Console.readLine();
+        return CriteriaFunctionInput.from(input);
     }
 }
