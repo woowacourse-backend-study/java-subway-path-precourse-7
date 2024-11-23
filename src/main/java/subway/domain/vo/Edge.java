@@ -23,4 +23,20 @@ public record Edge(Station station1, Station station2, int distance, int time) {
             throw new RuntimeException("시간은 최대 100,000,000분까지 가능합니다.");
         }
     }
+
+    public boolean isMatch(Station start, Station dest) {
+        return station1.equals(start) && station2.equals(dest)
+                || station1.equals(dest) && station2.equals(start);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Edge) {
+            if (((Edge) o).station1.equals(station1) && ((Edge) o).station2.equals(station2)) {
+                return true;
+            }
+            return ((Edge) o).station2.equals(station1) && ((Edge) o).station1.equals(station2);
+        }
+        return false;
+    }
 }

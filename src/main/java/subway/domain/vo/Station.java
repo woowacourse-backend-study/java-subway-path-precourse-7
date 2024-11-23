@@ -12,4 +12,14 @@ public class Station {
     }
 
     // 추가 기능 구현
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Station) {
+            return ((Station) o).getName().equals(name);
+        }
+        if (o instanceof String) {
+            return o.equals(name);
+        }
+        return false;
+    }
 }
