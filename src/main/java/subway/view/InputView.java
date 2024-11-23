@@ -27,6 +27,4 @@ public class InputView {
         String input = Console.readLine();
         return ArrivalStationInput.from(input);
     }
-
-
 }

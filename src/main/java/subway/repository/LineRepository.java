@@ -1,6 +1,7 @@
 package subway.repository;
 
 import subway.domain.Line;
+import subway.domain.Station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,5 +25,11 @@ public class LineRepository {
 
     public static void deleteAll() {
         lines.clear();
+    }
+
+    public static void initializeLines() {
+        addLine(new Line("2호선"));
+        addLine(new Line("3호선"));
+        addLine(new Line("신분당선"));
     }
 }
