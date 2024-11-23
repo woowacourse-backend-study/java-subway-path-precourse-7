@@ -9,6 +9,8 @@ import subway.domain.search.TotalTimeCalculator;
 
 public class SubwayPathController implements Controller {
 
+    private static final String SHORTEST_DISTANCE_OPTION = "1";
+
     private final SubMenuController subMenuController;
     private final TotalDistanceCalculator totalDistanceCalculator;
     private final TotalTimeCalculator totalTimeCalculator;
@@ -23,7 +25,7 @@ public class SubwayPathController implements Controller {
         String departure = answerDeparture();
         String arrival = answerArrival();
 
-        if (subMenuAnswer.equals("1")) {
+        if (subMenuAnswer.equals(SHORTEST_DISTANCE_OPTION)) {
             handleShortestDistanceCase(departure, arrival);
         }
         handleShortestTimeCase(departure, arrival);

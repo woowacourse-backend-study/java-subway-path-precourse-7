@@ -4,10 +4,9 @@ import subway.enums.MainAnswers;
 
 public class MainController implements Controller {
 
-    private final SubMenuController subMenuController;
+    private static final String EXIT = "Q";
 
     public MainController() {
-        this.subMenuController = new SubMenuController();
     }
 
     public void startMain() {
@@ -19,11 +18,16 @@ public class MainController implements Controller {
         String mainAnswer;
         while (true) {
             mainAnswer = answerInMain();
-            if (mainAnswer.equals("Q")) {
+            if (mainAnswer.equals(EXIT)) {
                 break;
             }
-            subMenuController.startSubMenu();
+            entranceSubMenu();
         }
+    }
+
+    public void entranceSubMenu() {
+        SubMenuController subMenuController = new SubMenuController();
+        subMenuController.startSubMenu();
     }
 
     private void initializeSubway() {
