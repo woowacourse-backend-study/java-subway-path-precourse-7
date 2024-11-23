@@ -1,17 +1,21 @@
 package subway.domain;
 
-public class Distance {
+public class Time {
     private String departure;
     private String arrival;
-    private int kilometer;
+    private int minute;
 
-    public Distance(String departure, String arrival, int kilometer) {
+    public Time(String departure, String arrival, int minute) {
         this.departure = departure;
         this.arrival = arrival;
-        this.kilometer = kilometer;
+        this.minute = minute;
     }
 
-    public int getKilometer() {
-        return kilometer;
+    public String getDeparture() {
+        return departure;
+    }
+
+    public String getArrival() {
+        return arrival;
     }
 }
