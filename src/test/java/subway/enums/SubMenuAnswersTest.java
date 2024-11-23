@@ -1,10 +1,8 @@
-package enums;
+package subway.enums;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-import subway.enums.ExceptionMessage;
-import subway.enums.SubMenuAnswers;
 
 public class SubMenuAnswersTest {
 

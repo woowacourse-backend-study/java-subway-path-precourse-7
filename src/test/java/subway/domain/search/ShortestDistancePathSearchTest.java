@@ -1,10 +1,9 @@
-package subway;
+package subway.domain.search;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import subway.controller.SubwayInitializer;
-import subway.domain.search.ShortestDistancePathSearch;
 
 public class ShortestDistancePathSearchTest {
 
