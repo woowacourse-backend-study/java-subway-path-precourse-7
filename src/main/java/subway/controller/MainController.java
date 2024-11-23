@@ -30,7 +30,7 @@ public class MainController {
         MainOption option;
         do {
             outputView.printMainOption();
-            option = doLoop(() -> MainOption.from(inputView.enterMainOption()));
+            option = doLoop(() -> MainOption.from(inputView.enterSelectOption()));
             controllers.get(option).process();
         } while (option.isPlayable());
         initStationInfo();
