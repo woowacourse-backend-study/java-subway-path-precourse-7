@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 import subway.domain.vo.Edge;
 import subway.domain.vo.Path;
 import subway.domain.vo.Station;
+import subway.infrastructure.ErrorException;
 import subway.repository.EdgeRepository;
 import subway.repository.StationRepository;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PathServiceTest {
     private final PathService pathService = new PathService();
@@ -67,10 +69,31 @@ class PathServiceTest {
         String dest = "양재역";
 
         // when
-        Path timePath = pathService.getDistancePath(start, dest);
+        Path distancePath = pathService.getDistancePath(start, dest);
 
         // then
-        assertThat(timePath.getTime()).isEqualTo(11);
-        assertThat(timePath.getDistance()).isEqualTo(4);
+        assertThat(distancePath.getTime()).isEqualTo(11);
+        assertThat(distancePath.getDistance()).isEqualTo(4);
+    }
+
+    @Test
+    @DisplayName("경로가 존재하지 않을 경우 에러를 반환한다.")
+    void 경로_존재하지_않음() {
+        // given
+        Station start = new Station("테스트1");
+        Station dest = new Station("테스트2");
+        StationRepository.addAll(List.of(start, dest));
+        EdgeRepository.addEdge(
+                new Edge(start, dest, 1, 1)
+        );
+
+        // when & then
+        assertThatThrownBy(
+                () -> {
+                    pathService.getTimePath("테스트1", "교대역");
+                    pathService.getDistancePath("테스트1", "교대역");
+                })
+                .isInstanceOf(ErrorException.class)
+                .describedAs("이동할 수 없는 경로입니다.");
     }
 }

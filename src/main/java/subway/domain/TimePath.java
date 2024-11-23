@@ -1,5 +1,6 @@
 package subway.domain;
 
+import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
@@ -23,7 +24,11 @@ public class TimePath {
 
     public Path getPath(String station1, String station2) {
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
-        List<String> stringPath = dijkstraShortestPath.getPath(station1, station2).getVertexList();
+        GraphPath graphPath = dijkstraShortestPath.getPath(station1, station2);
+        if (graphPath == null) {
+            return null;
+        }
+        List<String> stringPath = graphPath.getVertexList();
         List<Station> path = stringPath.stream().map(Station::new).toList();
         return new Path(path);
     }

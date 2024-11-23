@@ -39,6 +39,7 @@ public class SubwayController {
             String standard = getStandard();
             if (standard.equals("B")) continue;
             Path path = getPath(standard);
+            if (path == null) continue;
             outputView.printPathResult(path);
         }
     }
@@ -66,11 +67,15 @@ public class SubwayController {
     private Path getPath(String standard) {
         String start = getStart();
         String dest = getDest(start);
-
-        if (standard.equals("1")) { // 최단거리
-            return pathService.getDistancePath(start, dest);
+        try {
+            if (standard.equals("1")) { // 최단거리
+                return pathService.getDistancePath(start, dest);
+            }
+            return pathService.getTimePath(start, dest);
+        } catch (ErrorException e) {
+            System.out.println(e.getMessage());
         }
-        return pathService.getTimePath(start, dest);
+        return null;
     }
 
     private String getStart() {

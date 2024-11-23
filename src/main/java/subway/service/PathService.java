@@ -12,13 +12,21 @@ public class PathService {
     public Path getDistancePath(String start, String dest) {
         validate(start, dest);
         DistancePath distancePath = new DistancePath(StationRepository.stations(), EdgeRepository.edges());
-        return distancePath.getPath(start, dest);
+        Path path = distancePath.getPath(start, dest);
+        if (path == null) {
+            throw new ErrorException("이동할 수 없는 경로입니다.");
+        }
+        return path;
     }
 
     public Path getTimePath(String start, String dest) {
         validate(start, dest);
         TimePath timePath = new TimePath(StationRepository.stations(), EdgeRepository.edges());
-        return timePath.getPath(start, dest);
+        Path path = timePath.getPath(start, dest);
+        if (path == null) {
+            throw new ErrorException("이동할 수 없는 경로입니다.");
+        }
+        return path;
     }
 
     private void validate(String start, String dest) {
