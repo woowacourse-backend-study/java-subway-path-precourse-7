@@ -7,6 +7,14 @@ public class Line {
         this.name = name;
     }
 
+    @Override  // 디버깅
+    public String toString() {
+        return "Line{" + "name='" + name + '\'' +
+                '}';
+    }
+
+
+
     public String getName() {
         return name;
     }
