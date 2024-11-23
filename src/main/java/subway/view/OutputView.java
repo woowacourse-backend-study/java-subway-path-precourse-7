@@ -27,5 +27,6 @@ public class OutputView {
         System.out.println(EXPECTED_RESULT_KEYWORD + SPACE + "총 소요 시간: " + time + "분");
         System.out.println(EXPECTED_RESULT_KEYWORD + SPACE + "-".repeat(3));
         shortestPath.forEach(path -> System.out.println(EXPECTED_RESULT_KEYWORD + " " + path));
+        System.out.println();
     }
 }
