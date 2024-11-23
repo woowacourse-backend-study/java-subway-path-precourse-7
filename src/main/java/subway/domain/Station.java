@@ -11,5 +11,12 @@ public class Station {
         return name;
     }
 
+    @Override // 디버깅
+    public String toString() {
+        return "Station{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
     // 추가 기능 구현
 }
