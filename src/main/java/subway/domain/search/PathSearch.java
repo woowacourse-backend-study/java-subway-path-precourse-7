@@ -1,5 +1,7 @@
 package subway.domain.search;
 
+import static subway.enums.ExceptionMessage.NOT_CONNECTED_PATH;
+
 import java.util.List;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -11,6 +13,15 @@ public abstract class PathSearch {
     protected List<String> findOptimizePath(WeightedMultigraph<String, DefaultWeightedEdge> graph, String departure,
                                             String arrival) {
         DijkstraShortestPath<String, DefaultWeightedEdge> dijkstraShortestPath = new DijkstraShortestPath<>(graph);
-        return dijkstraShortestPath.getPath(departure, arrival).getVertexList();
+        List<String> shortestPath = dijkstraShortestPath.getPath(departure, arrival).getVertexList();
+        
+        return checkConnectedGraph(shortestPath);
+    }
+
+    private List<String> checkConnectedGraph(List<String> shortestPath) {
+        if (shortestPath.isEmpty()) {
+            throw new IllegalArgumentException(NOT_CONNECTED_PATH.valueOf());
+        }
+        return shortestPath;
     }
 }
