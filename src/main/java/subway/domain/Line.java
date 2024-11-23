@@ -7,7 +7,7 @@ public class Line {
         this.name = name;
     }
 
-    @Override  // 디버깅
+    @Override
     public String toString() {
         return "Line{" + "name='" + name + '\'' +
                 '}';

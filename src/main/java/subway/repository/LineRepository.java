@@ -17,6 +17,9 @@ public class LineRepository {
         lines.addAll(initialLines);
     }
 
+    private LineRepository() {
+    }
+
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
     }

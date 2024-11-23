@@ -25,6 +25,9 @@ public class StationRepository {
         stations.addAll(initialStations);
     }
 
+    private StationRepository() {
+    }
+
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }

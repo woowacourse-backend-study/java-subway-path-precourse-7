@@ -7,7 +7,7 @@ public class Station {
         this.name = name;
     }
 
-    @Override // 디버깅
+    @Override
     public String toString() {
         return "Station{" +
                 "name='" + name + '\'' +
