@@ -1,15 +1,21 @@
 package subway.domain;
 
-public class Station {
-    private String name;
+public class Distance {
+    private String departure;
+    private String arrival;
+    private int kilometer;
 
-    public Station(String name) {
-        this.name = name;
+    public Distance(String departure, String arrival, int kilometer) {
+        this.departure = departure;
+        this.arrival = arrival;
+        this.kilometer = kilometer;
     }
 
-    public String getName() {
-        return name;
+    public String getDeparture() {
+        return departure;
     }
 
-    // 추가 기능 구현
+    public String getArrival() {
+        return arrival;
+    }
 }

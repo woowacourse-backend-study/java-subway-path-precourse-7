@@ -5,22 +5,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class LineRepository {
-    private static final List<Line> lines = new ArrayList<>();
+public class DistanceRepository {
+    private static final List<Distance> distances = new ArrayList<>();
 
-    public static List<Line> lines() {
-        return Collections.unmodifiableList(lines);
+    public static List<Distance> lines() {
+        return Collections.unmodifiableList(distances);
     }
 
-    public static void addLine(Line line) {
-        lines.add(line);
+    public static void addDistance(Distance distance) {
+        distances.add(distance);
     }
 
-    public static boolean deleteLineByName(String name) {
-        return lines.removeIf(line -> Objects.equals(line.getName(), name));
+    public static boolean deleteLineByName(String departure, String arrival) {
+        return distances.removeIf(
+                distance -> Objects.equals(distance.getDeparture(), departure) &&
+                        Objects.equals(distance.getArrival(), arrival));
     }
 
     public static void deleteAll() {
-        lines.clear();
+        distances.clear();
     }
 }
