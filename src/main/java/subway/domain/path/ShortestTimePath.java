@@ -9,42 +9,37 @@ import subway.domain.Section;
 import subway.domain.Station;
 
 public class ShortestTimePath implements ShortestPath {
-    private final DijkstraShortestPath<Station, DefaultWeightedEdge> dijkstraPath;
+    private final DijkstraShortestPath <Station, CustomWeightedEdge> dijkstraPath;
 
     public ShortestTimePath(List<Station> stations, List<Section> sections) {
-        WeightedMultigraph<Station, DefaultWeightedEdge> graph = createGraph(stations, sections);
-        this.dijkstraPath = new DijkstraShortestPath<>(graph);
+        WeightedMultigraph<Station, CustomWeightedEdge> graph= new WeightedMultigraph<>(CustomWeightedEdge.class);
+        this. dijkstraPath = new DijkstraShortestPath<>(graph);
     }
-
-    private WeightedMultigraph<Station, DefaultWeightedEdge> createGraph(List<Station> stations, List<Section> sections) {
-        WeightedMultigraph<Station, DefaultWeightedEdge> graph = initializeGraph(stations);
-        addEdgesToGraph(graph, sections);
+    private  WeightedMultigraph<Station, CustomWeightedEdge> creatGraph(List<Station> stations, List<Section> sections) {
+        WeightedMultigraph<Station,CustomWeightedEdge> graph = new WeightedMultigraph<>(CustomWeightedEdge.class);
+        addVertex(stations,graph);
+        addEdge(sections, graph);
         return graph;
     }
 
-    private WeightedMultigraph<Station, DefaultWeightedEdge> initializeGraph(List<Station> stations) {
-        WeightedMultigraph<Station, DefaultWeightedEdge> graph = new WeightedMultigraph<>(DefaultWeightedEdge.class);
+    private void  addVertex(List<Station> stations, WeightedMultigraph<Station, CustomWeightedEdge> graph) {
         for (Station station : stations) {
             graph.addVertex(station);
         }
-        return graph;
     }
 
-    private void addEdgesToGraph(WeightedMultigraph<Station, DefaultWeightedEdge> graph, List<Section> sections) {
-        for (Section section : sections) {
-            graph.setEdgeWeight(graph.addEdge(section.getLeft(), section.getRight()), section.getTime());
+    private void addEdge(List<Section> sections, WeightedMultigraph<Station, CustomWeightedEdge> graph) {
+        for(Section section : sections) {
+            graph.setEdgeWeight(graph.addEdge(section.getLeft(),section.getRight()),
+                    section.getTime());
         }
     }
 
+
+    @Override
     public PathResult calculatePath(Station start, Station end) {
-        GraphPath<Station, DefaultWeightedEdge> path = dijkstraPath.getPath(start, end);
-        return createPathResult(path);
+        GraphPath<Station, CustomWeightedEdge> path = dijkstraPath.getPath(start, end);
+        return new PathResult((int) path.getWeight(),path. getVertexList(),path.getEdgeList());
     }
 
-    private PathResult createPathResult(GraphPath<Station, DefaultWeightedEdge> path) {
-        int weight = (int) path.getWeight();
-        List<Station> vertices = path.getVertexList();
-        List<DefaultWeightedEdge> edges = path.getEdgeList();
-        return new PathResult(weight, vertices, edges);
-    }
 }

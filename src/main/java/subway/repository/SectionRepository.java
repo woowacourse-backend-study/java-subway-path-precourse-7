@@ -24,7 +24,25 @@ public class SectionRepository {
 
         private SectionRepository() {
         }
+
         public static List<Section> sections() {
+
         return Collections.unmodifiableList(sections);
         }
+
+        public static List<Section> findByEdgeStationNames(List<List<String>> stationNames) {
+        List<Section> result = new ArrayList<>();
+        for(List<String> stationName: stationNames) {
+            hasStations(result, stationName);
+        }
+        return result;
+    }
+    private static void hasStations (List<Section> result, List<String> stationName) {
+        for (Section section : sections) {
+            if(section.hasStations(stationName)) {
+                result.add(section);
+            }
+        }
+
+    }
     }

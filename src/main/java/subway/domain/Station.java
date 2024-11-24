@@ -8,6 +8,9 @@ public class Station {
     public Station(String name) {
         this.name = name;
     }
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
+    }
 
 
     @Override
