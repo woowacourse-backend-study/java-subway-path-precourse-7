@@ -3,7 +3,6 @@ package subway.domain.path;
 import java.util.List;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
-import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
 import subway.domain.Section;
 import subway.domain.Station;
@@ -38,6 +37,7 @@ public class ShortestTimePath implements ShortestPath {
 
     @Override
     public PathResult calculatePath(Station start, Station end) {
+        ShortestParhValidator.validateIsEqualStations(start, end);
         GraphPath<Station, CustomWeightedEdge> path = dijkstraPath.getPath(start, end);
         return new PathResult((int) path.getWeight(),path. getVertexList(),path.getEdgeList());
     }
