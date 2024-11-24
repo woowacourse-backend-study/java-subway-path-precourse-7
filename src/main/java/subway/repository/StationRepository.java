@@ -1,7 +1,5 @@
 package subway.repository;
 
-import static net.bytebuddy.agent.builder.AgentBuilder.Default.of;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.Objects;
 import subway.domain.Station;
 
 public class StationRepository {
+    private static final String INVALID_STATION_NAME = "[ERROR] 해당 이름의 역은 없습니다.";
+
     private static final List<Station> stations = new ArrayList<>();
 
     static {
@@ -48,6 +48,6 @@ public class StationRepository {
         return stations.stream()
                 .filter(station -> station.isEqualName(stationName))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()-> new IllegalArgumentException(INVALID_STATION_NAME));
     }
 }
