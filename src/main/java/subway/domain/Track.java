@@ -32,4 +32,9 @@ public class Track {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return String.format("[INFO] %s\n", sourceName);
+    }
 }

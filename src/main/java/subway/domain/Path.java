@@ -49,12 +49,13 @@ public class Path {
 
     @Override
     public String toString() {
-        return "Path{" +
-                "sourceName='" + sourceName + '\'' +
-                ", destinationName='" + destinationName + '\'' +
-                ", tracks=" + tracks +
-                ", totalDistance=" + totalDistance +
-                ", totalPrice=" + totalPrice +
-                '}';
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[INFO] ---\n");
+        stringBuilder.append(String.format("[INFO] 총 거리: %dkm\n", totalDistance));
+        stringBuilder.append(String.format("[INFO] 총 소요 시간: %d분\n", totalPrice));
+        stringBuilder.append("[INFO] ---\n");
+        stringBuilder.append(tracks);
+        stringBuilder.append(String.format("[INFO] %s\n", destinationName));
+        return stringBuilder.toString();
     }
 }
