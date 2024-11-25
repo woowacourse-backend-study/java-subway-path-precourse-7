@@ -23,5 +23,9 @@ public class Station {
         }
         throw new RuntimeException("찾을 수 없는 역 입니다");
     }
+
+    public List<Track> getTracks() {
+        return tracks;
+    }
     // 추가 기능 구현
 }

@@ -11,11 +11,11 @@ public class PathPolicy {
         this.policy = policy;
     }
 
-    public boolean isBetterThan(Track ownTrack, Track compareTrack) {
+    public boolean isBetterThan(Path ownPath, Path comparePath) {
         if (policy.equals(Policy.LOW_PRICE)) {
-            return ownTrack.getPrice() <= compareTrack.getPrice();
+            return ownPath.isLowPriceThan(comparePath);
         }
-        return ownTrack.getDistance() <= ownTrack.getDistance();
+        return ownPath.isShortDistanceThan(comparePath);
     }
 
     public Track getPolicyTrack(List<Track> tracks) {
