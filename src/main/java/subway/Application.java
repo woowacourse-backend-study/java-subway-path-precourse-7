@@ -18,34 +18,36 @@ public class Application {
         final Scanner scanner = new Scanner(System.in);
         InputView inputView = new InputView(scanner, new Validate());
         OutputView outputView = new OutputView();
-
-        String input = inputView.inputMain();
         Factory.init();
 
-        if (input.equals("Q")) {
-            return;
-        }
+        while (true) {
+            String input = inputView.inputMain();
 
-        String policyInput = inputView.inputPolicy();
-        PathPolicy pathPolicy = null;
-        if (policyInput.equals("1")) {
-            pathPolicy = new PathPolicy(Policy.SHORT_DISTANCE);
-        }
-        if (policyInput.equals("2")) {
-            pathPolicy = new PathPolicy(Policy.LOW_PRICE);
+            if (input.equals("Q")) {
+                return;
+            }
 
-        }
-        if (policyInput.equals("B")) {
-            return;
-        }
+            String policyInput = inputView.inputPolicy();
+            PathPolicy pathPolicy = null;
+            if (policyInput.equals("1")) {
+                pathPolicy = new PathPolicy(Policy.SHORT_DISTANCE);
+            }
+            if (policyInput.equals("2")) {
+                pathPolicy = new PathPolicy(Policy.LOW_PRICE);
 
-        List<String> inputs = inputView.inputStations();
-        Station sourceStation = StationRepository.findByName(inputs.get(0));
+            }
+            if (policyInput.equals("B")) {
+                return;
+            }
 
-        Dijkstra dijkstra = new Dijkstra(sourceStation, pathPolicy);
-        dijkstra.calculatePath();
-        String destinationName = inputs.get(1);
-        Path shortestPath = dijkstra.getShortestPath(destinationName);
-        outputView.outputPath(shortestPath);
+            List<String> inputs = inputView.inputStations();
+            Station sourceStation = StationRepository.findByName(inputs.get(0));
+
+            Dijkstra dijkstra = new Dijkstra(sourceStation, pathPolicy);
+            dijkstra.calculatePath();
+            String destinationName = inputs.get(1);
+            Path shortestPath = dijkstra.getShortestPath(destinationName);
+            outputView.outputPath(shortestPath);
+        }
     }
 }
