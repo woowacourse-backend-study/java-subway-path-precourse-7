@@ -17,4 +17,12 @@ public class Track {
     public String getDestinationName() {
         return destinationName;
     }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 }
