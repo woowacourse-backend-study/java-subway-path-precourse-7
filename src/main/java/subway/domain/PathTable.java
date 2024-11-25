@@ -29,9 +29,11 @@ public class PathTable {
             return;
         }
 
+        Path destinationPath = findPath(track.getDestinationName());
+
         Path sourcePath = findPath(track.getSourceName());
         Path path = new Path(track, sourcePath);
-        if (pathPolicy.isBetterThan(path, sourcePath)) {
+        if (pathPolicy.isBetterThan(path, destinationPath)) {
             pathMap.put(track.getDestinationName(), path);
         }
     }

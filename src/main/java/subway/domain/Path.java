@@ -33,7 +33,8 @@ public class Path {
     public Path(Track track, Path sourcePath) {
         sourceName = sourcePath.sourceName;
         destinationName = track.getDestinationName();
-        tracks = sourcePath.tracks;
+        tracks = new ArrayList<>();
+        tracks.addAll(sourcePath.tracks);
         tracks.add(track);
         totalPrice = sourcePath.totalPrice + track.getPrice();
         totalDistance = sourcePath.totalDistance + track.getDistance();
@@ -54,7 +55,9 @@ public class Path {
         stringBuilder.append(String.format("[INFO] 총 거리: %dkm\n", totalDistance));
         stringBuilder.append(String.format("[INFO] 총 소요 시간: %d분\n", totalPrice));
         stringBuilder.append("[INFO] ---\n");
-        stringBuilder.append(tracks);
+        for (Track track : tracks) {
+            stringBuilder.append(track);
+        }
         stringBuilder.append(String.format("[INFO] %s\n", destinationName));
         return stringBuilder.toString();
     }
