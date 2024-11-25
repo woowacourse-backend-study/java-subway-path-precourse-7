@@ -7,7 +7,7 @@ import java.util.Arrays;
 public enum PathStandard {
 
     SHORTEST_DISTANCE("1","최단거리"),
-    SHORTEST_TIME("2","최소 시간"),
+    SHORTEST_TIME("2","최소시간"),
     BACK("B", "돌아가기");
 
     private static final String INVALID_PATH_STANDARD_MESSAGE= "[ERROR] 경로 기준은 1, 2, B 중에 입력 가능합니다.";
@@ -21,7 +21,7 @@ public enum PathStandard {
 
     public static PathStandard from(String number) {
         return Arrays.stream(PathStandard.values())
-                .filter(pathStandard -> pathStandard.isEqualNumber(number))
+                .filter(pathStandard -> pathStandard.isEqualNumber(number.trim()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_PATH_STANDARD_MESSAGE));
     }

@@ -19,10 +19,20 @@ public enum MainOption {
         return Arrays.stream(MainOption.values())
                 .filter(mainOption -> mainOption.isEqualNumber(number))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_INPUT_MAINOPTION)); // 수정된 부분
+                .orElseThrow(() ->
+                new IllegalArgumentException(INVALID_INPUT_MAINOPTION)); // 수정된 부분
     }
 
     private boolean isEqualNumber(String number) {
         return this.number.equals(number);
+    }
+    public String toDto(){
+        return String.format("%s. %s", this.number, this.name);
+    }
+    public boolean isPathGet(){
+        return this == PATH_GET;
+    }
+    public boolean isQuit(){
+        return this == QUIT;
     }
 }
