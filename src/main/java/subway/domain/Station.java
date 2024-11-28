@@ -23,4 +23,15 @@ public class Station {
             throw new CustomException(ExceptionMessage.INVALID_STATION_NAME_LEN.getMessage());
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Station) {
+            return ((Station) o).getName().equals(name);
+        }
+        if (o instanceof String) {
+            return o.equals(name);
+        }
+        return false;
+    }
 }
