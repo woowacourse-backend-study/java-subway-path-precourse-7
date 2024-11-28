@@ -9,6 +9,7 @@ public enum ExceptionMessage {
             String.format("역 사이 거리는 %,dkm 이상 %,dkm 이하까지 가능합니다.", Edge.MIN_DISTANCE, Edge.MAX_DISTANCE)
     ),
     INVALID_TIME(String.format("역 사이 시간은 %,d분 이상 %,d분 이하까지 가능합니다.", Edge.MIN_TIME, Edge.MAX_TIME)),
+    NOT_EXIST_STATION("존재하지 않는 역이 입력되었습니다."),
     ;
 
     private final String message;
