@@ -1,5 +1,6 @@
 package subway.service;
 
+import org.jgrapht.GraphPath;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import subway.domain.*;
 import subway.infrastructure.constants.ExceptionMessage;
@@ -22,10 +23,11 @@ public class TimePathService extends PathService {
 
     private Path getPath(String start, String end) {
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
-        List<String> path = dijkstraShortestPath.getPath(start, end).getVertexList();
-        if (path == null) {
+        GraphPath graphPath = dijkstraShortestPath.getPath(start, end);
+        if (graphPath == null) {
             throw new CustomException(ExceptionMessage.NOT_EXIST_PATH.getMessage());
         }
+        List<String> path = graphPath.getVertexList();
         return Path.from(path);
     }
 }
