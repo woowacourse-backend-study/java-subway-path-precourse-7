@@ -10,6 +10,9 @@ public enum ExceptionMessage {
     ),
     INVALID_TIME(String.format("역 사이 시간은 %,d분 이상 %,d분 이하까지 가능합니다.", Edge.MIN_TIME, Edge.MAX_TIME)),
     NOT_EXIST_STATION("존재하지 않는 역이 입력되었습니다."),
+    SAME_STATION("출발역과 도착역이 동일합니다."),
+    NOT_EXIST_PATH("경로가 존재하지 않습니다."),
+    INVALID_INPUT("입력 값이 올바르지 않습니다."),
     ;
 
     private final String message;

@@ -10,7 +10,8 @@ import java.util.Optional;
 
 public class TimePathService extends PathService {
     @Override
-    public Path findPath(String start, String end) {
+    protected Path findPath(String start, String end) {
+        initGraph();
         Optional<Station> startStation = StationRepository.findStation(start);
         Optional<Station> destStation = StationRepository.findStation(end);
         if (startStation.isEmpty() || destStation.isEmpty()) {
@@ -22,6 +23,9 @@ public class TimePathService extends PathService {
     private Path getPath(String start, String end) {
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(timeGraph);
         List<String> path = dijkstraShortestPath.getPath(start, end).getVertexList();
+        if (path == null) {
+            throw new CustomException(ExceptionMessage.NOT_EXIST_PATH.getMessage());
+        }
         return Path.from(path);
     }
 }
