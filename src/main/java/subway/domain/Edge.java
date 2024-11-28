@@ -18,6 +18,14 @@ public record Edge(Station start, Station end, int distance, int time) {
         return new Edge(new Station(start), new Station(end), distance, time);
     }
 
+    public String startStationName() {
+        return start.getName();
+    }
+
+    public String endStationName() {
+        return end.getName();
+    }
+
     private void validateDistance(int distance) {
         if (distance < MIN_DISTANCE || distance > MAX_DISTANCE) {
             throw new CustomException(ExceptionMessage.INVALID_DISTANCE.getMessage());
@@ -28,5 +36,13 @@ public record Edge(Station start, Station end, int distance, int time) {
         if (time < MIN_TIME || time > MAX_TIME) {
             throw new CustomException(ExceptionMessage.INVALID_TIME.getMessage());
         }
+    }
+
+    public boolean isMatch(Station a, Station b) {
+        if (a.equals(start) && b.equals(end)
+                || a.equals(end) && b.equals(start)) {
+            return true;
+        }
+        return false;
     }
 }
