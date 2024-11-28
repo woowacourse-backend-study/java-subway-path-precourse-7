@@ -32,7 +32,7 @@ public enum LineDataset {
         return line;
     }
 
-    public List<Line> getLines() {
+    public static List<Line> getLines() {
         return Arrays.stream(values())
                 .map(LineDataset::getData)
                 .toList();

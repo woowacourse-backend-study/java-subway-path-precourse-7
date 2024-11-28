@@ -25,7 +25,7 @@ public enum StationDataset {
         return station;
     }
 
-    public List<Station> getStations() {
+    public static List<Station> getStations() {
         return Arrays.stream(values())
                 .map(StationDataset::getData)
                 .toList();
