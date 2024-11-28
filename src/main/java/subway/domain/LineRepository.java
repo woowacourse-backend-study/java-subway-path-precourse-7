@@ -1,9 +1,6 @@
 package subway.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class LineRepository {
     private static final List<Line> lines = new ArrayList<>();
@@ -30,5 +27,12 @@ public class LineRepository {
             edges.addAll(line.getEdges());
         }
         return Collections.unmodifiableList(edges);
+    }
+
+    public static Optional<Edge> findEdgeByStations(Station a, Station b) {
+        List<Edge> edges = findAllEdge();
+        return edges.stream()
+                .filter(edge -> edge.isMatch(a, b))
+                .findFirst();
     }
 }
