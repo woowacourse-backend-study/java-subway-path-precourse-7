@@ -23,4 +23,12 @@ public class LineRepository {
     public static void deleteAll() {
         lines.clear();
     }
+
+    public static List<Edge> findAllEdge() {
+        List<Edge> edges = new ArrayList<>();
+        for (Line line : lines) {
+            edges.addAll(line.getEdges());
+        }
+        return Collections.unmodifiableList(edges);
+    }
 }
